@@ -5,7 +5,7 @@ share: true
 ---
 
 
-# 流程
+# 流程 124141
 1. obsidian 安装  `Enveloppe`
 
 ## 1 hugo (静态网站模板生称工具)
