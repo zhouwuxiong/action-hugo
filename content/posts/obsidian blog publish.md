@@ -4,7 +4,7 @@ share: true
 ---
 
 
-# 流程 12414112312324125456787914112233334455668899112233
+# 流程 1241411231232412545678791411223333445566889911223355
 1. obsidian 安装  `Enveloppe`
 
 ## 1 hugo (静态网站模板生称工具)
@@ -20,22 +20,22 @@ hugo version
 ```
 ## 2 obsidian 安装  Enveloppe
 
-[[link test|link test]]
+[link testundefined)
 
 ## 3 Enveloppe 配置
 复制 json 文件导入
 [obsidian-github-publisher-hugo/settings.json at main · miaogaolin/obsidian-github-publisher-hugo · GitHub](https://github.com/miaogaolin/obsidian-github-publisher-hugo/blob/main/settings.json)
 ### 3.1 Enveloppe 配置github
-![[2-obsidian blog publish.png|2-obsidian blog publish.png]]
+![2-obsidian blog publish.png](../../images/2-obsidian%20blog%20publish.png)
 
 1. fork 网站模板
 2. 获取 github token
-![[1-obsidian blog publish.png|1-obsidian blog publish.png]]
+![1-obsidian blog publish.png](../../images/1-obsidian%20blog%20publish.png)
 
 ### 3.2 目录配置 
-![[3-obsidian blog publish.png|3-obsidian blog publish.png]]
+![3-obsidian blog publish.png](../../images/3-obsidian%20blog%20publish.png)
 
 ## 4 vecel 部署
-![[4-obsidian blog publish.png|4-obsidian blog publish.png]]
+![4-obsidian blog publish.png](../../images/4-obsidian%20blog%20publish.png)
 
 
