@@ -21,7 +21,7 @@ hugo version
 ```
 ## 2 obsidian 安装  Enveloppe
 
-123
+
 ## 3 Enveloppe 配置
 复制 json 文件导入
 [obsidian-github-publisher-hugo/settings.json at main · miaogaolin/obsidian-github-publisher-hugo · GitHub](https://github.com/miaogaolin/obsidian-github-publisher-hugo/blob/main/settings.json)
@@ -39,3 +39,392 @@ hugo version
 ![[4-obsidian blog publish.png|4-obsidian blog publish.png]]
 
 
+default config
+```json
+{
+  "github": {
+    "branch": "main",
+    "automaticallyMergePR": true,
+    "dryRun": {
+      "enable": false,
+      "folderName": "enveloppe"
+    },
+    "api": {
+      "tiersForApi": "Github Free/Pro/Team (default)",
+      "hostname": ""
+    },
+    "workflow": {
+      "commitMessage": "[PUBLISHER] Merge",
+      "name": ""
+    },
+    "verifiedRepo": true
+  },
+  "upload": {
+    "behavior": "fixed",
+    "defaultName": "content/posts",
+    "rootFolder": "",
+    "yamlFolderKey": "",
+    "frontmatterTitle": {
+      "enable": true,
+      "key": "title"
+    },
+    "replaceTitle": [],
+    "replacePath": [],
+    "autoclean": {
+      "includeAttachments": true,
+      "enable": false,
+      "excluded": []
+    },
+    "folderNote": {
+      "enable": false,
+      "rename": "index.md",
+      "addTitle": {
+        "enable": false,
+        "key": "title"
+      }
+    },
+    "metadataExtractorPath": ""
+  },
+  "conversion": {
+    "hardbreak": false,
+    "dataview": true,
+    "censorText": [
+      {
+        "entry": "/\\]\\(([^/\\)]+?)\\.(png|jpg|jpeg|webp|gif|avif)/",
+        "replace": "](/images/$1.$2",
+        "flags": "",
+        "after": true
+      }
+    ],
+    "tags": {
+      "inline": false,
+      "exclude": [],
+      "fields": []
+    },
+    "links": {
+      "internal": false,
+      "unshared": false,
+      "wiki": false,
+      "slugify": "disable",
+      "unlink": false,
+      "relativePath": true,
+      "textPrefix": "/"
+    }
+  },
+  "embed": {
+    "attachments": true,
+    "overrideAttachments": [],
+    "keySendFile": [],
+    "notes": false,
+    "folder": "",
+    "convertEmbedToLinks": "keep",
+    "charConvert": "->",
+    "unHandledObsidianExt": [],
+    "sendSimpleLinks": true,
+    "forcePush": true
+  },
+  "plugin": {
+    "shareKey": "share",
+    "excludedFolder": [],
+    "copyLink": {
+      "enable": false,
+      "links": "",
+      "removePart": [],
+      "addCmd": false,
+      "transform": {
+        "toUri": true,
+        "slugify": "lower",
+        "applyRegex": []
+      }
+    },
+    "setFrontmatterKey": "Set"
+  }
+}
+```
+
+text replace 用于处理文件路径格式 [Enveloppe 插件适配 Hugo 的配置 | PrintLove](https://www.printlove.cn/github-publisher-hugo/)
+```text
+    "censorText": [
+      {
+        "entry": "/\\]\\(([^)\\.]+)\\.md/",
+
+        "flags": "",
+        "after": true,
+        "inCodeBlocks": false
+      },
+      {
+        "entry": "/cover\\.image/",
+        "replace": "cover:\\n    image",
+        "flags": "",
+        "after": false
+      },
+      {
+        "entry": "/\\]\\(([^/\\)]+?)\\.(png|jpg|jpeg|webp|gif)/",
+        "replace": "](/images/$1.$2",
+        "flags": "",
+        "after": true
+      },
+      {
+        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|(\\d+)(x(\\d+))?\\]\\]/",
+        "replace": "{{< figure src=\"/images/$1.$2\"  width=\"$3\" height=\"$5\">}}",
+        "flags": "",
+        "after": false
+      },
+      {
+        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|([^\\|]*?)(\\|(\\d+)(x(\\d+))?)?\\]\\]/",
+        "replace": "{{< figure src=\"/images/$1.$2\" caption=\"$3\" width=\"$5\" height=\"$7\">}}",
+        "flags": "",
+        "after": false
+      }
+    ],
+```
+
+
+final config
+```text
+{
+  "github": {
+    "branch": "main",
+    "automaticallyMergePR": true,
+    "dryRun": {
+      "enable": false,
+      "folderName": "enveloppe"
+    },
+    "api": {
+      "tiersForApi": "Github Free/Pro/Team (default)",
+      "hostname": ""
+    },
+    "workflow": {
+      "commitMessage": "[PUBLISHER] Merge",
+      "name": ""
+    },
+    "verifiedRepo": true
+  },
+  "upload": {
+    "behavior": "fixed",
+    "defaultName": "content/posts",
+    "rootFolder": "",
+    "yamlFolderKey": "",
+    "frontmatterTitle": {
+      "enable": true,
+      "key": "title"
+    },
+    "replaceTitle": [],
+    "replacePath": [],
+    "autoclean": {
+      "includeAttachments": true,
+      "enable": false,
+      "excluded": []
+    },
+    "folderNote": {
+      "enable": false,
+      "rename": "index.md",
+      "addTitle": {
+        "enable": false,
+        "key": "title"
+      }
+    },
+    "metadataExtractorPath": ""
+  },
+  "conversion": {
+    "hardbreak": false,
+    "dataview": true,
+    "censorText": [
+      {
+        "entry": "/\\]\\(([^)\\.]+)\\.md/",
+
+        "flags": "",
+        "after": true,
+        "inCodeBlocks": false
+      },
+      {
+        "entry": "/cover\\.image/",
+        "replace": "cover:\\n    image",
+        "flags": "",
+        "after": false
+      },
+      {
+        "entry": "/\\]\\(([^/\\)]+?)\\.(png|jpg|jpeg|webp|gif)/",
+        "replace": "](../../images/$1.$2",
+        "flags": "",
+        "after": true
+      },
+      {
+        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|([^\\|]*?)(\\|(\\d+)(x(\\d+))?)?\\]\\]/",
+        "replace": "{{< figure src=\"/images/$1.$2\" caption=\"$3\" width=\"$5\" height=\"$7\">}}",
+        "flags": "",
+        "after": false
+      }
+    ],
+    "tags": {
+      "inline": false,
+      "exclude": [],
+      "fields": []
+    },
+    "links": {
+      "internal": false,
+      "unshared": false,
+      "wiki": false,
+      "slugify": "disable",
+      "unlink": false,
+      "relativePath": true,
+      "textPrefix": "/"
+    }
+  },
+  "embed": {
+    "attachments": true,
+    "overrideAttachments": [],
+    "keySendFile": [],
+    "notes": false,
+    "folder": "",
+    "convertEmbedToLinks": "keep",
+    "charConvert": "->",
+    "unHandledObsidianExt": [],
+    "sendSimpleLinks": true,
+    "forcePush": true
+  },
+  "plugin": {
+    "shareKey": "share",
+    "excludedFolder": [],
+    "copyLink": {
+      "enable": false,
+      "links": "",
+      "removePart": [],
+      "addCmd": false,
+      "transform": {
+        "toUri": true,
+        "slugify": "lower",
+        "applyRegex": []
+      }
+    },
+    "setFrontmatterKey": "Set"
+  }
+}
+```
+
+```
+{
+  "github": {
+    "branch": "main",
+    "automaticallyMergePR": true,
+    "dryRun": {
+      "enable": false,
+      "folderName": "enveloppe"
+    },
+    "api": {
+      "tiersForApi": "Github Free/Pro/Team (default)",
+      "hostname": ""
+    },
+    "workflow": {
+      "commitMessage": "[PUBLISHER] Merge",
+      "name": ""
+    },
+    "verifiedRepo": true
+  },
+  "upload": {
+    "behavior": "obsidian",
+    "defaultName": "content/posts",
+    "rootFolder": "",
+    "yamlFolderKey": "",
+    "frontmatterTitle": {
+      "enable": true,
+      "key": "title"
+    },
+    "replaceTitle": [],
+    "replacePath": [],
+    "autoclean": {
+      "includeAttachments": true,
+      "enable": false,
+      "excluded": []
+    },
+    "folderNote": {
+      "enable": false,
+      "rename": "index.md",
+      "addTitle": {
+        "enable": false,
+        "key": "title"
+      }
+    },
+    "metadataExtractorPath": ""
+  },
+  "conversion": {
+    "hardbreak": false,
+    "dataview": true,
+    "censorText": [
+      {
+        "entry": "/\\]\\(([^)\\.]+)\\.md/",
+        "replace": "]({{< relref \"$1.md\" >}}",
+        "flags": "",
+        "after": true,
+        "inCodeBlocks": false
+      },
+      {
+        "entry": "/cover\\.image/",
+        "replace": "cover:\\n    image",
+        "flags": "",
+        "after": false
+      },
+      {
+        "entry": "/\\]\\(([^/\\)]+?)\\.(png|jpg|jpeg|webp|gif)/",
+        "replace": "](/static/images/$1.$2",
+        "flags": "",
+        "after": true
+      },
+      {
+        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|(\\d+)(x(\\d+))?\\]\\]/",
+        "replace": "{{< figure src=\"/images/$1.$2\"  width=\"$3\" height=\"$5\">}}",
+        "flags": "",
+        "after": false
+      },
+      {
+        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|([^\\|]*?)(\\|(\\d+)(x(\\d+))?)?\\]\\]/",
+        "replace": "{{< figure src=\"/images/$1.$2\" caption=\"$3\" width=\"$5\" height=\"$7\">}}",
+        "flags": "",
+        "after": false
+      }
+    ],
+    "tags": {
+      "inline": false,
+      "exclude": [],
+      "fields": []
+    },
+    "links": {
+      "internal": false,
+      "unshared": false,
+      "wiki": false,
+      "slugify": "disable",
+      "unlink": false,
+      "relativePath": true,
+      "textPrefix": "/"
+    }
+  },
+  "embed": {
+    "attachments": true,
+    "overrideAttachments": [],
+    "keySendFile": [],
+    "notes": false,
+    "folder": "",
+    "convertEmbedToLinks": "keep",
+    "charConvert": "->",
+    "unHandledObsidianExt": [],
+    "sendSimpleLinks": true,
+    "forcePush": true
+  },
+  "plugin": {
+    "shareKey": "share",
+    "excludedFolder": [],
+    "copyLink": {
+      "enable": false,
+      "links": "",
+      "removePart": [],
+      "addCmd": false,
+      "transform": {
+        "toUri": true,
+        "slugify": "lower",
+        "applyRegex": []
+      }
+    },
+    "setFrontmatterKey": "Set"
+  }
+}
+```
