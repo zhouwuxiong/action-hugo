@@ -353,7 +353,7 @@ final config
     "censorText": [
       {
         "entry": "/\\]\\(([^)\\.]+)\\.md/",
-        "replace": "]({{< relref \"$1.md\" >}}",
+
         "flags": "",
         "after": true,
         "inCodeBlocks": false
