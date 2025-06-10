@@ -21,7 +21,6 @@ hugo version
 ```
 ## 2 obsidian 安装  Enveloppe
 
-[[link test|link test]]
 
 ## 3 Enveloppe 配置
 复制 json 文件导入
