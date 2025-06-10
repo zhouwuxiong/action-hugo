@@ -40,7 +40,7 @@ hugo version
 
 
 
-```
+```json
 {
   "github": {
     "branch": "main",
