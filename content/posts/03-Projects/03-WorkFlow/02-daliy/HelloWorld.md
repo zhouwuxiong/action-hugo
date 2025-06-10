@@ -143,7 +143,7 @@ default config
 ```
 
 text replace 用于处理文件路径格式 [Enveloppe 插件适配 Hugo 的配置 | PrintLove](https://www.printlove.cn/github-publisher-hugo/)
-```json
+```text
     "censorText": [
       {
         "entry": "/\\]\\(([^)\\.]+)\\.md/",
@@ -181,7 +181,7 @@ text replace 用于处理文件路径格式 [Enveloppe 插件适配 Hugo 的配�
 
 
 final config
-```json
+```text
 {
   "github": {
     "branch": "main",
@@ -248,12 +248,6 @@ final config
         "replace": "](../../images/$1.$2",
         "flags": "",
         "after": true
-      },
-      {
-        "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|(\\d+)(x(\\d+))?\\]\\]/",
-        "replace": "{{< figure src=\"/images/$1.$2\"  width=\"$3\" height=\"$5\">}}",
-        "flags": "",
-        "after": false
       },
       {
         "entry": "/\\!\\[\\[([^/\\]]+?)\\.(png|jpg|jpeg|webp|gif)\\|([^\\|]*?)(\\|(\\d+)(x(\\d+))?)?\\]\\]/",
@@ -330,7 +324,7 @@ final config
   "upload": {
     "behavior": "obsidian",
     "defaultName": "content/posts",
-    "rootFolder": "../",
+    "rootFolder": "",
     "yamlFolderKey": "",
     "frontmatterTitle": {
       "enable": true,
