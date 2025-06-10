@@ -142,7 +142,7 @@ default config
 }
 ```
 
-text replace 用于处理文件路径格式
+text replace 用于处理文件路径格式 [Enveloppe 插件适配 Hugo 的配置 | PrintLove](https://www.printlove.cn/github-publisher-hugo/)
 ```json
     "censorText": [
       {
