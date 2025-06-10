@@ -147,7 +147,7 @@ text replace 用于处理文件路径格式 [Enveloppe 插件适配 Hugo 的配�
     "censorText": [
       {
         "entry": "/\\]\\(([^)\\.]+)\\.md/",
-        "replace": "]({{< relref \"$1.md\" >}}",
+
         "flags": "",
         "after": true,
         "inCodeBlocks": false
@@ -232,7 +232,7 @@ final config
     "censorText": [
       {
         "entry": "/\\]\\(([^)\\.]+)\\.md/",
-        "replace": "]({{< relref \"$1.md\" >}}",
+
         "flags": "",
         "after": true,
         "inCodeBlocks": false
