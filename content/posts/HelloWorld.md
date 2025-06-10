@@ -245,7 +245,7 @@ final
       },
       {
         "entry": "/\\]\\(([^/\\)]+?)\\.(png|jpg|jpeg|webp|gif)/",
-        "replace": "](/images/$1.$2",
+        "replace": "](../../images/$1.$2",
         "flags": "",
         "after": true
       },
