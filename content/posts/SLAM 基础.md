@@ -22,7 +22,7 @@ $$
 其中SO(3)的左雅克比矩阵为
 $$
 \begin{aligned}
-{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
+{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\\\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
 \end{aligned}
 $$
 而SO(3)的右雅克比矩阵为
@@ -77,14 +77,6 @@ exp(\phi^{\wedge}) &=R \\\\[1ex]
 \end{aligned}
 $$
 
-
-$$
-\begin{aligned}
-\exp(\phi^{\wedge}) &= R \\[1ex]  % 指数映射（李代数到旋转矩阵）
-\phi &= \log(R)^{\vee} \\[1ex]    % 对数映射（旋转矩阵到李代数）
-\phi^{\wedge} &= \log(R)          % 李代数表示（反对称矩阵）
-\end{aligned}
-$$
 
 ### 5.1 叉积交换
 $$
