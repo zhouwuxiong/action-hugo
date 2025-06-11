@@ -71,8 +71,8 @@ ESKF 与 EKF 类似，只是 EKF 是对整个运动方程进行高斯过程，�
 ## 5 利群与李代数转换
 $$
 \begin{aligned}
-exp(\phi^{\wedge}) &=R \\[1ex]
-\phi &= log(R)^{\vee} \\[1ex]
+exp(\phi^{\wedge}) &=R \\\\[1ex]
+\phi &= log(R)^{\vee} \\\\[1ex]
 \phi^{\wedge} &= log(R)
 \end{aligned}
 $$
