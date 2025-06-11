@@ -92,15 +92,15 @@ $$
 ### 5.3 指数函数常用性质 124
 $$
 \begin{cases}
-e^{x} = 1 + x +  + \frac{x^n}{n!} \\\\
-e^{-ax} = e^{-a} + e^x \\\\
+e^{x} = 1 + x +  + \frac{x^n}{n!} \\\\[1ex]
+e^{-ax} = e^{-a} + e^x \\\\[1ex]
 e^{a+b} = e^ae^b
 \end{cases}
 
 \quad\Rightarrow\quad
 
 \begin{cases}
-exp(x) = 1 + x \\\\
+exp(x) = 1 + x \\\\[1ex]
 exp(\theta + \Delta\theta) = exp(\theta)exp(\Delta\theta)
 \end{cases}
 $$### BCH 近似
