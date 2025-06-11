@@ -80,33 +80,33 @@ $$
 
 ### 5.1 叉积交换
 $$
-\begin{cases}
+\begin{aligned}
 	a \times b = - b \times a \\\\
 	\partial\theta^{\wedge} \omega = \omega^{\wedge} \partial\theta
-\end{cases}
+\end{aligned}
 $$
 ### 5.2 SO(3) 伴随公式 
 $$
 \phi^{\wedge}R = R(R^T\phi)^{\wedge}
 $$
-### 5.3 指数函数常用性质 1245
+### 5.3 指数函数常用性质 1246
 $$
-\begin{cases}
+\begin{aligned}
 e^{x} = 1 + x +  + \frac{x^n}{n!} \\\\[1ex]
 e^{-ax} = e^{-a} + e^x \\\\[1ex]
 e^{a+b} = e^ae^b
-\end{cases}
+\end{aligned}
 
+\quad\Rightarrow\quad
 
-
-\begin{cases}
+\begin{aligned}
 exp(x) = 1 + x \\\\[1ex]
 exp(\theta + \Delta\theta) = exp(\theta)exp(\Delta\theta)
-\end{cases}
+\end{aligned}
 $$### BCH 近似
 BCH 公式关联了李群乘法与李代数加法之间的关系，**李群（SO(3)）上乘小量等于李代数（so(3)）上加小量（带雅可比矩阵）**
 $$
-\begin{cases}
+\begin{aligned}
 exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})
 
 \\\\[1ex]
@@ -120,7 +120,7 @@ Log(R exp(\Delta \phi)) \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}
 \\\\[1ex]
 
 log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
-\end{cases}
+\end{aligned}
 $$
 
 ### 旋转求导
