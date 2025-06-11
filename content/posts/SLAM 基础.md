@@ -92,7 +92,7 @@ $$
 ### 5.3 指数函数常用性质 124
 $$
 \begin{cases}
-e^{x} = 1 + x + ... + \frac{x^n}{n!} \\\\
+e^{x} = 1 + x +  + \frac{x^n}{n!} \\\\
 e^{-ax} = e^{-a} + e^x \\\\
 e^{a+b} = e^ae^b
 \end{cases}
