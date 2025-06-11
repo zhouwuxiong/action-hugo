@@ -89,19 +89,17 @@ $$
 $$
 \phi^{\wedge}R = R(R^T\phi)^{\wedge}
 $$
-### 5.3 指数函数常用性质 1245657
+### 5.3 指数函数常用性质 124
 $$
 \begin{cases}
-e^{x} = 1 + x +  + \frac{x^n}{n!} 
-e^{-ax} = e^{-a} + e^x 
-e^{a+b} = e^ae^b
+e^{x} = 1 + x + \cdots + \dfrac{x^n}{n!} \\[8pt]
+e^{-ax} = e^{-a} + e^{x} \\[8pt]
+e^{a+b} = e^{a}e^{b}
 \end{cases}
-
 \quad\Rightarrow\quad
-
 \begin{cases}
-exp(x) = 1 + x \\\\[1ex]
-exp(\theta + \Delta\theta) = exp(\theta)exp(\Delta\theta)
+\exp(x) = 1 + x \\[8pt]
+\exp(\theta + \Delta\theta) = \exp(\theta)\exp(\Delta\theta)
 \end{cases}
 $$### BCH 近似
 BCH 公式关联了李群乘法与李代数加法之间的关系，**李群（SO(3)）上乘小量等于李代数（so(3)）上加小量（带雅可比矩阵）**
