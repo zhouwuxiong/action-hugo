@@ -22,7 +22,7 @@ $$
 其中SO(3)的左雅克比矩阵为
 $$
 \begin{aligned}
-{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\\\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
+{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
 \end{aligned}
 $$
 而SO(3)的右雅克比矩阵为
@@ -81,7 +81,7 @@ $$
 ### 5.1 叉积交换
 $$
 \begin{cases}
-	a \times b = - b \times a \\
+	a \times b = - b \times a \\\\
 	\partial\theta^{\wedge} \omega = \omega^{\wedge} \partial\theta
 \end{cases}
 $$
@@ -92,15 +92,15 @@ $$
 ### 5.3 指数函数常用性质
 $$
 \begin{cases}
-e^{x} = 1 + x + ... + \frac{x^n}{n!} \\
-e^{-ax} = e^{-a} + e^x \\
+e^{x} = 1 + x + ... + \frac{x^n}{n!} \\\\
+e^{-ax} = e^{-a} + e^x \\\\
 e^{a+b} = e^ae^b
 \end{cases}
 
 \quad\Rightarrow\quad
 
 \begin{cases}
-exp(x) = 1 + x \\
+exp(x) = 1 + x \\\\
 exp(\theta + \Delta\theta) = exp(\theta)exp(\Delta\theta)
 \end{cases}
 $$### BCH 近似
@@ -109,16 +109,15 @@ $$
 \begin{cases}
 exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})
 
-\\[2ex]
+\\\\
 
 exp(\phi+\Delta\phi) \approx exp(\phi^{\wedge})exp(J_r\Delta\phi^{\wedge}) \approx exp(J_l\Delta\phi^\wedge)exp(\phi^{\wedge})
 
-\\[2ex]
+\\\\
 
 Log(R exp(\Delta \phi)) \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}
 
-
-\\[2ex]
+\\\\
 
 log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
 \end{cases}
@@ -129,7 +128,7 @@ $$
 \begin{cases}
 \dot{R} = Rw^{\wedge}, \quad \text{该式也称为泊松方程，w为瞬时角速度}
 
-\\[2ex]
+\\\\
 
 \dot{exp(\delta\theta^{\wedge})} = exp(\delta\theta^{\wedge})exp(\delta\dot{\theta}^{\wedge})
 \end{cases}
