@@ -109,15 +109,15 @@ $$
 \begin{cases}
 exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})
 
-\\\\
+\\\\[1ex]
 
 exp(\phi+\Delta\phi) \approx exp(\phi^{\wedge})exp(J_r\Delta\phi^{\wedge}) \approx exp(J_l\Delta\phi^\wedge)exp(\phi^{\wedge})
 
-\\\\
+\\\\[1ex]
 
 Log(R exp(\Delta \phi)) \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}
 
-\\\\
+\\\\[1ex]
 
 log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
 \end{cases}
@@ -128,7 +128,7 @@ $$
 \begin{cases}
 \dot{R} = Rw^{\wedge}, \quad \text{该式也称为泊松方程，w为瞬时角速度}
 
-\\\\
+\\\\[1ex]
 
 \dot{exp(\delta\theta^{\wedge})} = exp(\delta\theta^{\wedge})exp(\delta\dot{\theta}^{\wedge})
 \end{cases}
