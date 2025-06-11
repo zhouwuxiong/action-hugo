@@ -20,9 +20,11 @@ $$\Delta{R}{R} = \exp(\Delta{\phi}^{\wedge})\exp({\phi}^{\wedge}) = \exp \left((
 $$\exp(({\phi} + \Delta{\phi})^{\wedge}) = \exp(({J}_l({\phi})\Delta{\phi})^\wedge) \exp({\phi}^\wedge)= \exp({\phi}^\wedge) \exp(({J}_r({\phi})\Delta{\phi})^\wedge)
 $$
 其中SO(3)的左雅克比矩阵为
-$$\begin{aligned}
+$$
+\begin{aligned}
 {J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
-\end{aligned}$$
+\end{aligned}
+$$
 而SO(3)的右雅克比矩阵为
 $$
 {J}_r({\phi}) = {J}_l(-{\phi})
