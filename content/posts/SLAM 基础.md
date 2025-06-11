@@ -97,7 +97,7 @@ e^{-ax} = e^{-a} + e^x \\\\[1ex]
 e^{a+b} = e^ae^b
 \end{cases}
 
-\quad\Rightarrow\quad
+
 
 \begin{cases}
 exp(x) = 1 + x \\\\[1ex]
