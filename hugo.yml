@@ -243,3 +243,7 @@ services:
     disableInlineCSS: true
   x:
     disableInlineCSS: true
+    
+    
+params:
+  math: true
