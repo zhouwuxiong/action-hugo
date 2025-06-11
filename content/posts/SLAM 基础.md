@@ -65,7 +65,7 @@ ESKF 与 EKF 类似，只是 EKF 是对整个运动方程进行高斯过程，�
 若$x\sim(\mu,\sigma^2)$，则$Ax+b \sim (A\mu+b,A\sigma^2A^T)$
 **高斯分布相乘**
 若$x\sim(\mu_0,\sigma_0^2)$，$y\sim(\mu_1,\sigma_1^2)$，则$x*y \sim (A\mu+b,A\sigma^2A^T)$
-![[1-SLAM 基础.png|1-SLAM 基础.png]]
+![1-SLAM 基础.png](1-SLAM%20%E5%9F%BA%E7%A1%80.png)
 
 ## 4 常用数学公式 
 ## 5 利群与李代数转换
