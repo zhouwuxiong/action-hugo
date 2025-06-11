@@ -32,7 +32,7 @@ $$
 \theta = 2\arccos s \\\\
 [n_x,n_y,n_z]^T = v^T/\sin{\frac{\theta}{2}}
 \end{array}
-\right.
+\right
 \end{aligned}
 \tag{1}
 $$
@@ -100,7 +100,7 @@ $$
 		0 & 1 & 0 \\\\
 		-sin(\beta) & 0 & cos(\beta) \\\\
 		\end{bmatrix} \\\\[1ex]
-
+		
 	R_{yaw} &=&
 		\begin{bmatrix}
 			cos(\phi) & -sin(\phi) & 0 \\\\
