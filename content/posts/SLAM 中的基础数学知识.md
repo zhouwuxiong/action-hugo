@@ -161,7 +161,52 @@ $$
 A^{-1} =\frac{A^*}{|A|}, \quad  A^*_{i,j} 为去掉A_{i,j}所在的行和列之后剩余元素的行列式
 $$
 
+
+
+# 几何变换
+## 1 平面系数与平面法向量 
+平面方程
+$$
+ax+by+cz+d = 0
+$$
+平面与各轴的交点：
+$$
+\begin{cases}
+P_x : (-\frac{d}{a},0,0) \\\\
+P_y : (0,-\frac{d}{b},0) \\\\
+P_z : (0,0,-\frac{d}{c})
+\end{cases}
+$$
+点P(x,y,z)到平面$\vec{n}$的距离 
+$$
+	d_p = \frac{|\vec{PP_x} \vec{n}|}{|\vec{n}|}
+$$
+
+
+
 # Appendix
+平面对齐：
+```cpp
+    // 1. 计算两平面的旋转
+    // 法线叉乘计算两平面的旋转轴
+    Eigen::Vector3d rot_axis2 = slave_gplane.normal.cross(master_gplane.normal);
+    rot_axis2.normalize();
+    // 法线点乘计算面的旋转角
+    double alpha2 = std::acos(slave_gplane.normal.dot(master_gplane.normal));
+    Eigen::Matrix3d R_ms;
+    // 平面对齐的旋转向量
+    R_ms = Eigen::AngleAxisd(alpha2, rot_axis2);
+    
+    // 2. 计算两平面的平移
+    // 平面于z轴的交点 intercept-截距  normal-法线
+	Eigen::Vector3d slave_intcpt_local( 0, 0, -slave_gplane.intercept / slave_gplane.normal(2));
+    // 交点旋转到对准点云
+    Eigen::Vector3d slave_intcpt_master = R_ms * slave_intcpt_local;
+    // 计算平面对齐的平移变量 ？？ 为什么只移动z轴坐标，这样可以将平面重合，平面上的点也能对应吗？
+    Eigen::Vector3d t_ms(0, 0, t_mp(2) - slave_intcpt_master(2));
+```
+
+
 ```c++
 geometry_msgs::Quaternion EulerAngletoQuaternion(double yaw, double pitch, double roll) // yaw (Z), pitch (Y), roll (X)
 {
@@ -238,45 +283,3 @@ double angles_weight_mean(double angleA, double weightA, double angleB, double w
   return angle_normal(mean);
 }
 ```
-
-# 几何变换
-## 1 平面系数与平面法向量 
-平面方程
-$$
-ax+by+cz+d = 0
-$$
-平面与各轴的交点：
-$$
-\begin{cases}
-P_x : (-\frac{d}{a},0,0) \\\\
-P_y : (0,-\frac{d}{b},0) \\\\
-P_z : (0,0,-\frac{d}{c})
-\end{cases}
-$$
-点P(x,y,z)到平面$\vec{n}$的距离 
-$$
-	d_p = \frac{|\vec{PP_x} \vec{n}|}{|\vec{n}|}
-$$
-
-平面对齐：
-```cpp
-    // 1. 计算两平面的旋转
-    // 法线叉乘计算两平面的旋转轴
-    Eigen::Vector3d rot_axis2 = slave_gplane.normal.cross(master_gplane.normal);
-    rot_axis2.normalize();
-    // 法线点乘计算面的旋转角
-    double alpha2 = std::acos(slave_gplane.normal.dot(master_gplane.normal));
-    Eigen::Matrix3d R_ms;
-    // 平面对齐的旋转向量
-    R_ms = Eigen::AngleAxisd(alpha2, rot_axis2);
-    
-    // 2. 计算两平面的平移
-    // 平面于z轴的交点 intercept-截距  normal-法线
-	Eigen::Vector3d slave_intcpt_local( 0, 0, -slave_gplane.intercept / slave_gplane.normal(2));
-    // 交点旋转到对准点云
-    Eigen::Vector3d slave_intcpt_master = R_ms * slave_intcpt_local;
-    // 计算平面对齐的平移变量 ？？ 为什么只移动z轴坐标，这样可以将平面重合，平面上的点也能对应吗？
-    Eigen::Vector3d t_ms(0, 0, t_mp(2) - slave_intcpt_master(2));
-```
-
-
