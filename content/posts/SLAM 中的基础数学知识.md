@@ -30,9 +30,9 @@ $$
 \left\{
 \begin{array}{l}
 \theta = 2\arccos s \\\\
-[n_x,n_y,n_z]^T = v^T/\sin{\frac{\theta}{2}}
+[n_x,n_y,n_z]^T = \frac{v^T}{\sin{\frac{\theta}{2}}}
 \end{array}
-\right
+\right.
 \end{aligned}
 \tag{1}
 $$
