@@ -10,7 +10,7 @@ share: false
 obsidianUIMode: source
 number headings: auto, first-level 1, max 6, _.1.1
 ---
-//
+
 # 1 旋转的表示
 ## 1 旋转向量
 
@@ -29,7 +29,7 @@ $$
 \begin{aligned}
 \left\{
 \begin{array}{l}
-\theta = 2\arccos s \\
+\theta = 2\arccos s \\\\
 [n_x,n_y,n_z]^T = v^T/\sin{\frac{\theta}{2}}
 \end{array}
 \right.
@@ -43,7 +43,7 @@ $$
 3. 旋转矩阵转旋转向量
 $$
 \begin{cases}
-\theta = \arccos(\frac{tr(\boldsymbol{R})-1}{2}) \\[2ex]
+\theta = \arccos(\frac{tr(\boldsymbol{R})-1}{2}) \\\\[1ex]
 n = Rn, \quad \text{轴n是R特征值为1的单位特征向量}
 \end{cases}
 \tag{3}
@@ -57,9 +57,9 @@ $$
 5. 旋转矩阵转四元数
 $$
 \begin{cases}
-\boldsymbol\omega = \frac{\sqrt{1 + \text{trace}(\boldsymbol{R})}}{2} \\[2ex]
-\boldsymbol{x} = \frac{R_{32} - R_{23}}{4w} \\[2ex]
-\boldsymbol{y} = \frac{R_{13} - R_{31}}{4w} \\[2ex]
+\boldsymbol\omega = \frac{\sqrt{1 + \text{trace}(\boldsymbol{R})}}{2} \\\\[1ex]
+\boldsymbol{x} = \frac{R_{32} - R_{23}}{4w} \\\\[1ex]
+\boldsymbol{y} = \frac{R_{13} - R_{31}}{4w} \\\\[1ex]
 \boldsymbol{z} = \frac{R_{21} - R_{12}}{4w}
 \end{cases}
 \tag{5}
@@ -78,7 +78,7 @@ $$
 $$
 \theta = 
 \begin{bmatrix} 
-\cos(x) & -sin(x) \\
+\cos(x) & -sin(x) \\\\
 sin(x) & cos(x)
 \end{bmatrix} 
 \tag{8}
@@ -89,24 +89,24 @@ $$
 \begin{cases}
 	R_{roll} &=& 
 		\begin{bmatrix}
-		1 & 0 & 0 \\
-		0 & cos(\alpha) & -sin(\alpha) \\
-		0 & sin(\alpha) & cos(\alpha)  \\
-		\end{bmatrix} \\[2ex]
+		1 & 0 & 0 \\\\
+		0 & cos(\alpha) & -sin(\alpha) \\\\
+		0 & sin(\alpha) & cos(\alpha)  \\\\
+		\end{bmatrix} \\\\[1ex]
 		
 	R_{pitch} &=&
 		\begin{bmatrix}
-		cos(\beta) & 0 & sin(\beta) \\
-		0 & 1 & 0 \\
-		-sin(\beta) & 0 & cos(\beta) \\
-		\end{bmatrix} \\[2ex]
+		cos(\beta) & 0 & sin(\beta) \\\\
+		0 & 1 & 0 \\\\
+		-sin(\beta) & 0 & cos(\beta) \\\\
+		\end{bmatrix} \\\\[1ex]
 
 	R_{yaw} &=&
 		\begin{bmatrix}
-			cos(\phi) & -sin(\phi) & 0 \\
-			sin(\phi) & cos(\phi) & 0 \\
-			0 & 0 & 1 \\
-		\end{bmatrix} \\[2ex]
+			cos(\phi) & -sin(\phi) & 0 \\\\
+			sin(\phi) & cos(\phi) & 0 \\\\
+			0 & 0 & 1 \\\\
+		\end{bmatrix} \\\\[1ex]
 	
 	R_{(\alpha,\beta,\phi)} &=& R_{\phi}*R_{\beta}*R_{\alpha}, \text{一般采ZYX的顺序进行旋转叠加}
 \end{cases}
@@ -115,9 +115,9 @@ $$
 9. 计算向量与坐标轴之间的 rpy角
 $$
 \begin{cases}
-	roll &=& \tan(z/y) \\
-	pich &=& \tan(x/z) \\
-	yaw  &=& \tan(y/x) \\
+	roll &=& \tan(z/y) \\\\
+	pich &=& \tan(x/z) \\\\
+	yaw  &=& \tan(y/x) \\\\
 \end{cases}
 $$
 
@@ -145,8 +145,8 @@ $$
 $$
 A = 
 \begin{bmatrix}
- 2 & 0 & 0 \\
- 0 & 1 & 0 \\
+ 2 & 0 & 0 \\\\
+ 0 & 1 & 0 \\\\
  0 & 0 & 1
 \end{bmatrix}
 $$
@@ -248,8 +248,8 @@ $$
 平面与各轴的交点：
 $$
 \begin{cases}
-P_x : (-\frac{d}{a},0,0) \\
-P_y : (0,-\frac{d}{b},0) \\
+P_x : (-\frac{d}{a},0,0) \\\\
+P_y : (0,-\frac{d}{b},0) \\\\
 P_z : (0,0,-\frac{d}{c})
 \end{cases}
 $$
@@ -278,4 +278,5 @@ $$
     // 计算平面对齐的平移变量 ？？ 为什么只移动z轴坐标，这样可以将平面重合，平面上的点也能对应吗？
     Eigen::Vector3d t_ms(0, 0, t_mp(2) - slave_intcpt_master(2));
 ```
+
 
