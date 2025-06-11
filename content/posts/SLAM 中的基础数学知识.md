@@ -93,21 +93,18 @@ $$
 		0 & cos(\alpha) & -sin(\alpha) \\\\
 		0 & sin(\alpha) & cos(\alpha)  \\\\
 		\end{bmatrix} \\\\[1ex]
-		
 	R_{pitch} &=&
 		\begin{bmatrix}
 		cos(\beta) & 0 & sin(\beta) \\\\
 		0 & 1 & 0 \\\\
 		-sin(\beta) & 0 & cos(\beta) \\\\
 		\end{bmatrix} \\\\[1ex]
-		
 	R_{yaw} &=&
 		\begin{bmatrix}
 			cos(\phi) & -sin(\phi) & 0 \\\\
 			sin(\phi) & cos(\phi) & 0 \\\\
 			0 & 0 & 1 \\\\
 		\end{bmatrix} \\\\[1ex]
-	
 	R_{(\alpha,\beta,\phi)} &=& R_{\phi}*R_{\beta}*R_{\alpha}, \text{一般采ZYX的顺序进行旋转叠加}
 \end{cases}
 \tag{9}
