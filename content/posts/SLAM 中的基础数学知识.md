@@ -28,15 +28,10 @@ $$
 ## 4 旋转表示之间的相互转换
 1. 四元数转旋转向量 
 $$
-\begin{aligned}
-\left\{
-\begin{array}{l}
+\begin{cases}{l}
 \theta = 2\arccos s \\\\
 [n_x,n_y,n_z]^T = \frac{v^T}{\sin{\frac{\theta}{2}}}
-\end{array}
-\right.
-\end{aligned}
-\tag{1}
+\end{cases}
 $$
 2. 旋转$\theta\boldsymbol{n}$向量转四元数
 $$
@@ -107,7 +102,6 @@ $$
 			sin(\phi) & cos(\phi) & 0 \\\\
 			0 & 0 & 1 \\\\
 		\end{bmatrix} \\\\[1ex]
-	
 	R_{(\alpha,\beta,\phi)} &=& R_{\phi}*R_{\beta}*R_{\alpha}, \text{一般采ZYX的顺序进行旋转叠加}
 \end{cases}
 \tag{9}
@@ -158,7 +152,7 @@ $$
 ## 7 为什么信息矩阵是协方差的逆
 协方差表示了不同特征之间的相关性。而根据逆矩阵的伴随矩阵求法可知，的逆矩阵的第 i，j 个元$A_{i,j}$为去掉原矩阵的第i行和第j列之后的剩余元素的行列式与A矩阵行列式的比值。
 $$
-A^{-1} =\frac{A^*}{|A|}, \quad  A^*_{i,j} 为去掉A_{i,j}所在的行和列之后剩余元素的行列式
+A^{-1} =\frac{A^*}{|A|},\quad A^*_{i,j} 为去掉A_{i,j}所在的行和列之后剩余元素的行列式
 $$
 
 
@@ -222,7 +216,7 @@ $$
 $$
 \phi^{\wedge}R = R(R^T\phi)^{\wedge}
 $$
-### 1.3 指数函数常用性质 12445
+### 1.3 指数函数常用性质
 $$
 \begin{cases}
 e^{x} = 1 + x + \cdots + \dfrac{x^n}{n!} \\\\[8pt]
@@ -239,17 +233,11 @@ BCH 公式关联了李群乘法与李代数加法之间的关系，**李群（SO
 $$
 \begin{aligned}
 exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})
-
 \\\\[1ex]
-
 exp(\phi+\Delta\phi) \approx exp(\phi^{\wedge})exp(J_r\Delta\phi^{\wedge}) \approx exp(J_l\Delta\phi^\wedge)exp(\phi^{\wedge})
-
 \\\\[1ex]
-
 Log(R exp(\Delta \phi)) \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}
-
 \\\\[1ex]
-
 log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
 \end{aligned}
 $$
@@ -264,7 +252,8 @@ $$
 其中SO(3)的左雅克比矩阵为
 $$
 \begin{aligned}
-{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
+{J}_l(\theta{a}) &= \frac{\sin\theta}{\theta}{I} + (1-\frac{\sin\theta}{\theta}){a}{a}^T+(\frac{1-\cos\theta}{\theta}){a}^{\wedge} \\\\
+{J}^{-1}_l(\theta{a}) &= \frac{\theta}{2}\cot\frac{\theta}{2}{I} + (1-\frac{\theta}{2}\cot\frac{\theta}{2}){a}{a}^T-\frac{\theta}{2}{a}^{\wedge}
 \end{aligned}
 $$
 而SO(3)的右雅克比矩阵为
@@ -277,9 +266,7 @@ $$
 $$
 \begin{cases}
 \dot{R} = Rw^{\wedge}, \quad \text{该式也称为泊松方程，w为瞬时角速度}
-
 \\\\[1ex]
-
 \dot{exp(\delta\theta^{\wedge})} = exp(\delta\theta^{\wedge})exp(\delta\dot{\theta}^{\wedge})
 \end{cases}
 $$
