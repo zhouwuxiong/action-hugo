@@ -13,6 +13,7 @@ number headings: auto, first-level 1, max 6, _.1.1
 
 
 
+
 # 1 旋转的表示
 ## 1 旋转向量
 
@@ -89,19 +90,19 @@ $$
 		1 & 0 & 0 \\\\
 		0 & cos(\alpha) & -sin(\alpha) \\\\
 		0 & sin(\alpha) & cos(\alpha)  \\\\
-		\end{bmatrix} \\\\[1ex]
+		\end{bmatrix} \\\\[2ex]
 	R_{pitch} &=&
 		\begin{bmatrix}
 		cos(\beta) & 0 & sin(\beta) \\\\
 		0 & 1 & 0 \\\\
 		-sin(\beta) & 0 & cos(\beta) \\\\
-		\end{bmatrix} \\\\[1ex]
+		\end{bmatrix} \\\\[2ex]
 	R_{yaw} &=&
 		\begin{bmatrix}
 			cos(\phi) & -sin(\phi) & 0 \\\\
 			sin(\phi) & cos(\phi) & 0 \\\\
 			0 & 0 & 1 \\\\
-		\end{bmatrix} \\\\[1ex]
+		\end{bmatrix} \\\\[2ex]
 	R_{(\alpha,\beta,\phi)} &=& R_{\phi}*R_{\beta}*R_{\alpha}, \text{一般采ZYX的顺序进行旋转叠加}
 \end{cases}
 \tag{9}
@@ -232,13 +233,10 @@ $$### BCH 近似
 BCH 公式关联了李群乘法与李代数加法之间的关系，**李群（SO(3)）上乘小量等于李代数（so(3)）上加小量（带雅可比矩阵）**
 $$
 \begin{aligned}
-exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})
-\\\\[1ex]
-exp(\phi+\Delta\phi) \approx exp(\phi^{\wedge})exp(J_r\Delta\phi^{\wedge}) \approx exp(J_l\Delta\phi^\wedge)exp(\phi^{\wedge})
-\\\\[1ex]
-Log(R exp(\Delta \phi)) \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}
-\\\\[1ex]
-log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
+exp(\phi^{\wedge})exp(\Delta\phi^{\wedge}) & \approx exp((\phi+J_r^{-1}\Delta\phi)^{\wedge})    \\\\
+exp(\phi+\Delta\phi) & \approx exp(\phi^{\wedge})exp(J_r\Delta\phi^{\wedge}) \approx exp(J_l\Delta\phi^\wedge)exp(\phi^{\wedge})    \\\\
+Log(R exp(\Delta \phi)) & \approx Log(R)+ J_r^{-1}(Log(R))\Delta\phi^{\wedge}    \\\\
+log(\prod_{k=1}^{j-1}exp(\Delta\phi ))^{\vee} & \approx \sum_{k=i}^{j-1}\Delta\phi, \quad \text{由于 $\Delta\phi$ 为小量,所以假定了$J_r=I$}
 \end{aligned}
 $$
 
@@ -392,5 +390,7 @@ double angles_weight_mean(double angleA, double weightA, double angleB, double w
     // 计算平面对齐的平移变量 ？？ 为什么只移动z轴坐标，这样可以将平面重合，平面上的点也能对应吗？
     Eigen::Vector3d t_ms(0, 0, t_mp(2) - slave_intcpt_master(2));
 ```
+
+
 
 
