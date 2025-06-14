@@ -11,7 +11,7 @@ obsidianUIMode: source
 number headings: auto, first-level 1, max 6, _.1.1
 ---
 
-一个好的特征描述符应该至少保留以下特征：
+一个好的特征描述符应该至少保留以下特征： 123
 1. 旋转不变性
 2. 尺度不变性 
 3. 光度不敏感
