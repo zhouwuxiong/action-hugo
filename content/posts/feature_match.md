@@ -49,3 +49,8 @@ brief  本身不具有灰度不变性 ，为了保证旋转不变性，ORB 通�
 [Site Unreachable](https://zhuanlan.zhihu.com/p/481373935)
 ## 2 SIFT
 
+
+Reference:
+[SIFT 特征 - SLAM 之旅](https://lsxiang.github.io/Journey2SLAM/computer_vision/SIFT/)
+
+[关于 SLAM - SLAM 之旅](https://lsxiang.github.io/Journey2SLAM/aboutSLAM/)
