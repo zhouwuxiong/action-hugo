@@ -25,25 +25,29 @@ number headings: auto, first-level 1, max 6, _.1.1
 imu 初始化子在单目初始化完成之后进行，会以较高的频率（4～10Hz）插入关键帧进行 IMU 的初始化，执行函数为 `InitializeIMU()` ，imu 初始化主要分为4各阶段，前三个阶段都使用`InitializeIMU` 进行图优化。
 > 为什么要进行高频率的插入，是因为关键帧之间的时间间隔比较短时，IMU 之间的预积分量的不确定性也较低，在 2s 内基本可以生成是十几个关键帧和地图点。同时在短时间内(2s内)，我们可以假定系统是是静止的，方便对重力方向进行初值估计。
 
-第一次阶段的执行 条件是(关键帧数量>10 并且距离初始关键帧的时间>1s) , `InitializeIMU` 首先计算了重力方向和视觉坐标系方向的相对旋转作为初值，需要注意的是这里假设了 1s 的系统是静止或匀速运动的，对运动方程做了简化，此时速度的增量完全由重力加速度产生，因此只需要计算速度增量与视觉坐标系的夹角 即可得重力方向矫正的旋转角(dirg)。
-然后以视觉位姿作为观测，对预积分方城做图优化。 在进行图优化时我们主要需要考虑三个问题，优化量、约束(固定量)、残差、初值。 在 `InertialOptimization` 的优化问题中，优化量为重力方向，尺度，速度与偏置；固定量为视觉观测位姿，残差为预积分的 delta 量；初值，重力方向(dirg)，尺度(1.0)，速度(视觉里程计估计的速度)，ba和bg(0)。
+第一次阶段的执行 条件是(关键帧数量>10 并且距离初始关键帧的时间>1s) , `InitializeIMU` 首先计算了重力方向和视觉坐标系方向的相对旋转作为初值，需要注意的是这里假设了 1s 的系统是静止或匀速运动的，对运动方程做了简化，此时速度的增量完全由重力加速度产生，因此只需要计算速度增量与视觉坐标系的夹角 即可得重力方向矫正的旋转角(dirg)。然后以视觉位姿作为观测，对预积分方做图优化`InertialOptimization`。
 
 第二和和第三界阶段使用同样调用 `InitializeIMU()` 函数执行，只是调高了（ ba、bg） 的置信度（ PriorA、PriorG），可以理解为逐步精细的求解(ba、bg)。并且第二、第三阶段会在每次加入新的关键帧时都调用 `InitializeIMU` 进行初始化，而不是向第一阶段一样只调用一次。
 
 第四阶段为重力方向和尺度精修`ScaleRefinement`，具体做法是固定图优化中的其它顶点，只优化重力方向和尺度。这个阶段是在每次累积一定数量的关键帧后进行。
+
+### 3.1 `InertialOptimization`
+ 在进行图优化时我们主要需要考虑三个问题，优化量、约束(固定量)、残差、初值。 在 `InertialOptimization` 的优化问题中，优化量为重力方向，尺度，速度与偏置；固定量为视觉观测位姿，残差为预积分的 delta 量；初值，重力方向(dirg)，尺度(1.0)，速度(视觉里程计估计的速度)，ba和bg(0)。
 ![1-ORB_SLAM3.png](1-ORB_SLAM3.png)
 
+### 3.2 `FullInertialBA`
 
-### 3.1 尺度和重力方向优化
+[ORB-SLAM3：FullInertialBA()代码分析-CSDN博客](https://blog.csdn.net/weixin_46363611/article/details/113567082)
+### 3.3 尺度和重力方向优化
 
-## 4 视觉贯导联合初始化 `Optimizer::FullInertialBA`
+## 4 视觉贯导联合初始化 
 
 ## 5 Reference
 [Site Unreachable](https://blog.csdn.net/guanjing_dream/article/details/128824320)
 
 ## 6 Appendix
 ```cpp
-/**
+/** 
  * @brief imu初始化
  * @param priorG 陀螺仪偏置的信息矩阵系数，主动设置时一般bInit为true，也就是只优化最后一帧的偏置，这个数会作为计算信息矩阵时使用
  * @param priorA 加速度计偏置的信息矩阵系数
@@ -60,8 +64,8 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
     // 从时间及帧数上限制初始化，不满足下面的不进行初始化
     if (mbMonocular)
     {
-        minTime = 2.0;
-        nMinKF = 10;
+        minTime = 2.0;  // 10s
+        nMinKF = 10;    // 10 KF
     }
     else
     {
@@ -74,7 +78,7 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
         return;
 
     // Retrieve all keyframe in temporal order
-    // 按照顺序存放目前地图里的关键帧，顺序按照前后顺序来，包括当前关键帧
+    // 按照顺序存放目前地图里的关键帧，顺序按照前后顺序(Id)来，包括当前关键帧
     list<KeyFrame*> lpKF;
     KeyFrame* pKF = mpCurrentKeyFrame;
     while(pKF->mPrevKF)
@@ -120,14 +124,16 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
         {
             if (!(*itKF)->mpImuPreintegrated)
                 continue;
-            if (!(*itKF)->mPrevKF)
+            if (!(*itKF)->mPrevKF) // first Frame
                 continue;
 
             have_imu_num++;
             // 初始化时关于速度的预积分定义 Ri.t()*(s*Vj - s*Vi - Rwg*g*tij)
-            // 累积每一帧对重力方向的估计
+            // mPrevKF->GetImuRotation() 为视觉里程计估计的旋转
+            // GetUpdatedDeltaVelocity() 为 IMU 估计的速度增量
+            // dirG 将 IMU 估计的速度增量(g*t)变换到世界坐标系(第一帧图像坐标系)下然后进行累加
             dirG -= (*itKF)->mPrevKF->GetImuRotation() * (*itKF)->mpImuPreintegrated->GetUpdatedDeltaVelocity();
-            // 求取实际的速度，位移/时间
+            // 求取实际的速度，位移/时间 （根据视觉里程计估计IMU的速度）
             Eigen::Vector3f _vel = ((*itKF)->GetImuPosition() - (*itKF)->mPrevKF->GetImuPosition())/(*itKF)->mpImuPreintegrated->dT;
             (*itKF)->SetVelocity(_vel);
             (*itKF)->mPrevKF->SetVelocity(_vel);
@@ -141,10 +147,14 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
             return;
         }
 
+
+        // -------------  计算相机坐标系下的重力方向与物理世界重力方向的夹角 -------------------- //
         // dirG = sV1 - sVn + n*Rwg*g*t
+        // (这里假设了速度变化很小，即处于匀速运动或静止，此时IMU 测量的速度的增量方向与重力加速度的方向一致，
+        // 所以 dirG 代表了 IMU 测量的重力加速度方向，而 gI 则代表了视觉里程计坐标下下的 z 轴，接下来算他们的夹角将 z 轴矫正到与重力方向对齐)
         // 归一化，约等于重力在世界坐标系下的方向
         dirG = dirG/dirG.norm();
-        // 原本的重力方向
+        // 物理世界的重力方向
         Eigen::Vector3f gI(0.0f, 0.0f, -1.0f);
         // 求“重力在重力坐标系下的方向”与的“重力在世界坐标系（纯视觉）下的方向”叉乘
         Eigen::Vector3f v = gI.cross(dirG);
@@ -155,7 +165,7 @@ void LocalMapping::InitializeIMU(float priorG, float priorA, bool bFIBA)
         const float ang = acos(cosg);
         // v/nv 表示垂直于两个向量的轴  ang 表示转的角度，组成角轴
         Eigen::Vector3f vzg = v*ang/nv;
-        // 获得重力坐标系到世界坐标系的旋转矩阵的初值
+        // 获得重力坐标系到世界坐标系(视觉里程计坐标系)的旋转矩阵的初值
         Rwg = Sophus::SO3f::exp(vzg).matrix();
         mRwg = Rwg.cast<double>();
         mTinit = mpCurrentKeyFrame->mTimeStamp-mFirstTs;
